@@ -42,7 +42,7 @@ def get_available_formats(url):
 # Function to download video or audio
 
 
-def download_video(url, format_choice, only_audio=False):
+def download_video(url, format_choice=None, only_audio=False):
     try:
         # Get UNIX timestamp
         unix_timestamp = int(time.time())
@@ -55,11 +55,6 @@ def download_video(url, format_choice, only_audio=False):
                 'format': 'bestaudio/best',  # Select only audio (best)
                 'extractaudio': True,  # Extract only audio
                 'audioquality': 0,  # Best audio quality
-                # 'postprocessors': [{
-                #     'key': 'FFmpegAudio',  # Audio conversion
-                #     'preferredcodec': 'mp3',  # Convert to mp3
-                #     'preferredquality': '320',  # 192
-                # }],
             }
         else:
             # If both video and audio, select the best format for both
@@ -110,7 +105,7 @@ def get_formats():
 @app.route('/download', methods=['POST'])
 def download():
     url = request.form['url']
-    format_choice = request.form['format']
+    format_choice = request.form.get('format')
     only_audio = 'audio' in request.form
 
     message = download_video(url, format_choice, only_audio)
