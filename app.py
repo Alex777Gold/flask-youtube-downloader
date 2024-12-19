@@ -42,7 +42,7 @@ def get_available_formats(url):
 # Function to download video or audio
 
 
-def download_video(url, format_choice=None, only_audio=False):
+def download_video(url, only_audio=False):
     try:
         # Get UNIX timestamp
         unix_timestamp = int(time.time())
@@ -105,10 +105,9 @@ def get_formats():
 @app.route('/download', methods=['POST'])
 def download():
     url = request.form['url']
-    format_choice = request.form.get('format')
     only_audio = 'audio' in request.form
 
-    message = download_video(url, format_choice, only_audio)
+    message = download_video(url, only_audio)
     return render_template('index.html', message=message)
 
 # Download file
