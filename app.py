@@ -55,11 +55,11 @@ def download_video(url, format_choice, only_audio=False):
                 'format': 'bestaudio/best',  # Select only audio (best)
                 'extractaudio': True,  # Extract only audio
                 'audioquality': 0,  # Best audio quality
-                'postprocessors': [{
-                    'key': 'FFmpegAudio',  # Audio conversion
-                    'preferredcodec': 'mp3',  # Convert to mp3
-                    'preferredquality': '320',  # 192
-                }],
+                # 'postprocessors': [{
+                #     'key': 'FFmpegAudio',  # Audio conversion
+                #     'preferredcodec': 'mp3',  # Convert to mp3
+                #     'preferredquality': '320',  # 192
+                # }],
             }
         else:
             # If both video and audio, select the best format for both
